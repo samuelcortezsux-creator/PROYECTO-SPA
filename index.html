@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spa de Mascotas - Sistema de Gestión</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- LOGIN -->
+    <div id="login" class="login-container">
+        <h1>🐾 Spa de Mascotas</h1>
+        <h3 style="text-align: center; margin-bottom: 20px; color: #666;">Iniciar Sesión</h3>
+        <input type="text" id="usuario" placeholder="Usuario">
+        <input type="password" id="password" placeholder="Contraseña">
+        <button onclick="iniciarSesion()">Ingresar</button>
+        <p style="margin-top: 15px; text-align: center; color: #666; font-size: 14px;">
+            Usuario: admin | Contraseña: 1234
+        </p>
+    </div>
+
+    <!-- SISTEMA PRINCIPAL -->
+    <div id="sistema" class="sistema">
+        <div class="container">
+            <!-- HEADER -->
+            <div class="header">
+                <h1>🐾 Spa de Mascotas - Sistema de Gestión</h1>
+                <button onclick="cerrarSesion()">Cerrar Sesión</button>
+            </div>
+
+            <!-- NAVEGACIÓN -->
+            <div class="navegacion">
+                <button onclick="mostrarModulo('registro')" id="btnRegistro">📝 Registro</button>
+                <button onclick="mostrarModulo('agenda')" id="btnAgenda">📅 Agenda</button>
+                <button onclick="mostrarModulo('carrito')" id="btnCarrito">🛒 Carrito</button>
+            </div>
+
+            <!-- MÓDULO REGISTRO -->
+            <div id="modRegistro" class="modulo activo">
+                <h2>Registro de Dueños y Mascotas</h2>
+                
+                <div class="formulario">
+                    <h3>Datos del Dueño</h3>
+                    <div class="campo">
+                        <label>Nombre Completo:</label>
+                        <input type="text" id="nombreDueno">
+                    </div>
+                    <div class="campo">
+                        <label>Teléfono:</label>
+                        <input type="tel" id="telefonoDueno">
+                    </div>
+                    <div class="campo">
+                        <label>Correo Electrónico:</label>
+                        <input type="email" id="correoDueno">
+                    </div>
+                    <button class="btn" onclick="registrarDueno()">Registrar Dueño</button>
+                </div>
+
+                <div class="formulario">
+                    <h3>Datos de la Mascota</h3>
+                    <div class="campo">
+                        <label>Nombre de la Mascota:</label>
+                        <input type="text" id="nombreMascota">
+                    </div>
+                    <div class="campo">
+                        <label>Especie:</label>
+                        <select id="especieMascota">
+                            <option value="">Seleccione...</option>
+                            <option value="Perro">Perro</option>
+                            <option value="Gato">Gato</option>
+                            <option value="Conejo">Conejo</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label>Raza:</label>
+                        <input type="text" id="razaMascota">
+                    </div>
+                    <button class="btn" onclick="registrarMascota()">Registrar Mascota</button>
+                </div>
+
+                <div id="mensajeRegistro" class="mensaje"></div>
+
+                <div class="lista" id="listaDuenos"></div>
+                <div class="lista" id="listaMascotas"></div>
+            </div>
+
+            <!-- MÓDULO AGENDA -->
+            <div id="modAgenda" class="modulo">
+                <h2>Agenda de Servicios</h2>
+                
+                <div class="formulario">
+                    <h3>Agendar Servicio</h3>
+                    <div class="campo">
+                        <label>Fecha:</label>
+                        <input type="date" id="fechaServicio">
+                    </div>
+                    <div class="campo">
+                        <label>Hora:</label>
+                        <input type="time" id="horaServicio">
+                    </div>
+                    <div class="campo">
+                        <label>Mascota:</label>
+                        <input type="text" id="mascotaServicio">
+                    </div>
+                    <div class="campo">
+                        <label>Servicio:</label>
+                        <select id="tipoServicio">
+                            <option value="">Seleccione...</option>
+                            <option value="Baño Completo">Baño Completo</option>
+                            <option value="Corte de Pelo">Corte de Pelo</option>
+                            <option value="Limpieza Dental">Limpieza Dental</option>
+                            <option value="Corte de Uñas">Corte de Uñas</option>
+                            <option value="Masaje Relajante">Masaje Relajante</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-success" onclick="agendarServicio()">Agendar</button>
+                </div>
+
+                <div id="mensajeAgenda" class="mensaje"></div>
+
+                <div class="lista" id="listaAgenda"></div>
+            </div>
+
+            <!-- MÓDULO CARRITO -->
+            <div id="modCarrito" class="modulo">
+                <h2>Carrito de Compras</h2>
+                
+                <h3>Catálogo de Productos</h3>
+                <div class="catalogo" id="catalogoProductos"></div>
+
+                <h3 style="margin-top: 30px;">Tu Carrito</h3>
+                <div class="carrito-items" id="carritoItems"></div>
+                
+                <div class="carrito-total">
+                    <h3>Subtotal: bs <span id="subtotal">0</span></h3>
+                    <h3>Total: bs <span id="total">0</span></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
